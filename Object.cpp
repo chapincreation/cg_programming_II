@@ -155,6 +155,54 @@ void Object::BuildTriangleStrip(const GLuint& perRow, const GLuint& perColumn){
 	LoadTriangles(vertices, vertices);
 }
 
+
+void Object::BuildCube() {
+// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
+// A cube has 6 faces with 2 triangles each, so this makes 6*2=12 triangles, and 12*3 vertices
+	
+	static const GLfloat vertices[] = {
+		-1.0f,-1.0f,-1.0f, // triangle 1 : begin
+		-1.0f,-1.0f, 1.0f,
+		-1.0f, 1.0f, 1.0f, // triangle 1 : end
+		1.0f, 1.0f,-1.0f, // triangle 2 : begin
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f,-1.0f, // triangle 2 : end
+		1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f, 1.0f,
+		-1.0f,-1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		-1.0f,-1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f,-1.0f,
+		1.0f,-1.0f,-1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f,-1.0f,
+		-1.0f, 1.0f,-1.0f,
+		1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f,-1.0f,
+		-1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,
+		-1.0f, 1.0f, 1.0f,
+		1.0f,-1.0f, 1.0f
+	};
+	
+	this->renderMode = GL_TRIANGLES;
+	glDrawArrays(GL_TRIANGLES, 0, 12*3); // 12*3 indices starting at 0 -> 12 triangles -> 6 squares
+}
+
 void Object::LoadTriangles(GLfloat *vertices, GLfloat *uvs){
 	glGenBuffers(1, &vertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
@@ -367,7 +415,12 @@ mat4 Object::Render(){
 	mat4 modelMatrix = translate(identityMatrix, position);
 	mat4 transform = mat2 * mat1;
 	vec4 out_vec = transform * in_vec;*/
-	float angle = 30.0f;
+	float angle = 10.0f;
+	glm::mat4 myIdentityMatrix = glm::mat4(1.0f);
+	//glm::mat4 myScalingMatrix = glm::scale(2.0f, 2.0f ,2.0f);
+	//glm::vec3 myRotationAxis( ??, ??, ??);
+	//glm::rotate( angle_in_degrees, myRotationAxis );
+
 	mat4 identityMatrix = mat4(1.0f);
 	mat4 translateMatrix = translate(identityMatrix, position);
 	

@@ -30,17 +30,17 @@ class Object{
 		void LoadTriangles(const GLuint& perRow, const GLuint& perColumn, const GLenum& renderMode);
 		
 	protected:
+		void BuildCube();
 		void BuildTriangles(const GLuint& perRow, const GLuint& perColumn);
 		void BuildTriangleStrip(const GLuint& perRow, const GLuint& perColumn);
-		
+		vec3 position, scale, rotation;
 		Object* objectState;
 		
 
 	private:
-		vec3 position, scale, rotation;
+		
 		void LoadTriangles(GLfloat *vertices, GLfloat *uvs);
 		float leftX, rightX, topY, bottomY;
 		mat4 Render();
-		
 		GLuint numIndices, numUVs, textureID, vertexBufferID, renderMode, uvID;
 };

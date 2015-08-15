@@ -6,9 +6,9 @@
 class Cube : public Object{
 
 	public:
-		Cube(GLuint width, GLuint height, GLuint depth);
+		Cube(GLuint width, GLuint height);
 		virtual ~Cube();
 
 	private:
-		GLuint width, height, depth;
+		GLuint width, height;
 };

@@ -2,6 +2,7 @@
 #include "Plane.h"
 #include "Ball.h"
 #include "Player.h"
+#include "Cube.h"
 
 #pragma once
 
@@ -28,6 +29,7 @@ class World{
 		
 	private:
 		
+		Cube* cube;
 		Plane* plane;
 		Plane* waterB;
 		Plane* waterLB;

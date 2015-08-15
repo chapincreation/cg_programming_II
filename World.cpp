@@ -23,10 +23,11 @@ World::World(){
 	//glGenTextures(5, textures);
 	
 	//plane = new Plane(1, 1);
+	cube = new Cube(1, 1);
 
 	waterB = new Plane(1, 1);
 	
-	waterBTexture = waterB->LoadDDS("./textures/waterBlue.DDS");
+	waterBTexture = cube->LoadDDS("./textures/waterBlue.DDS");
 	waterB->SetPosition(vec3(1.0f, 1.0f, 0.0f)); // MOVES PLAYERTEXTURE, WHY?
 
 	waterLB = new Plane(2, 2);
@@ -181,6 +182,8 @@ unsigned char World::FindChar(const char* buffer, const char& c){
 
 //TODO: Add functionality later...
 World::~World(){
+	delete cube;
+	cube = NULL;
 	delete waterB;
 	waterB = NULL;
 	delete waterLB;
@@ -202,10 +205,11 @@ void World::Update(const float& deltaTime){
 	waterLB->Update(deltaTime);
 	waterLG->Update(deltaTime);
 	player->Update(deltaTime);
+
 }
 
 void World::Render(const Camera& camera){
-	/**/
+	/*
 	glBindTexture(GL_TEXTURE_2D, waterLGTexture);
 	
 	waterLG->Render(camera);
@@ -220,10 +224,10 @@ void World::Render(const Camera& camera){
 	player->Render(camera);
 	
 
-
+*/
 	glBindTexture(GL_TEXTURE_2D, waterBTexture);
 	waterB->Render(camera);
-	
+	cube->Render(camera);
 	
 	
 	//waterG->Render(camera);
